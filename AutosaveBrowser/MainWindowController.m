@@ -67,8 +67,17 @@
         [[self outlineViewController] addObject:parent_entry];
     }
     
+    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys: versionString,@"version", [entryMTime description], @"updated", nil];
+    
+    NSMutableDictionary *new_parent = [NSMutableDictionary dictionaryWithDictionary:parent_entry];
+    NSMutableArray *new_child_list = [NSMutableArray arrayWithArray:[new_parent objectForKey:@"child"]];
+    [new_child_list addObject:new_subentry];
+    [new_parent setObject:new_child_list forKey:@"child"];
+    [[self outlineViewController] removeObject:parent_entry];
+    [[self outlineViewController] addObject:parent_entry];
     //NSDictionary *sub_entry = [NSDictionary dictionaryWithObjectsAndKeys:parent_entry, nil]
 }
+
 - (void) scanAutosaveVault_v80
 {
     NSError *e=NULL;
