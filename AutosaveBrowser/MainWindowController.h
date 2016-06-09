@@ -13,9 +13,14 @@
 - (IBAction) cacheProjectClicked:(id)sender;
 
 @property (strong) IBOutlet NSMutableArray *outlineViewData;
+@property (strong) IBOutlet NSArray *knownPremiereVersions;
 
+@property (weak) IBOutlet NSPanel *prefsPanel;
 @property (weak) IBOutlet NSTreeController *outlineViewController;
 @property (weak) IBOutlet NSProgressIndicator *progressBar;
+@property (weak) IBOutlet NSWindow *mainWindow;
 
 - (void) scanAutosaveVault;
+- (IBAction) prefsClicked:(id)sender;
+- (IBAction) prefsCloseClicked:(id)sender;
 @end
