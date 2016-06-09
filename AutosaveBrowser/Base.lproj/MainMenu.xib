@@ -34,7 +34,7 @@
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                             <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                 <connections>
-                                    <action selector="prefsClicked:" target="ebC-Vb-Tvq" id="lLs-Py-OWl"/>
+                                    <action selector="prefsClicked:" target="Qsu-cK-QoF" id="I96-ZR-Tdz"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -211,8 +211,8 @@
             <connections>
                 <outlet property="mainWindow" destination="QvC-M9-y7g" id="E11-mT-7jN"/>
                 <outlet property="outlineViewController" destination="Q9h-b8-moY" id="BYJ-AG-ukr"/>
-                <outlet property="prefsPanel" destination="tYO-lL-aVh" id="1BU-pi-4Ek"/>
                 <outlet property="progressBar" destination="JP2-SB-pTu" id="Or9-mp-HVv"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="EFN-0B-UQe"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="Ilv-Fe-x2D"/>
@@ -226,7 +226,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7V-ri-Z5Q">
-                        <rect key="frame" x="20" y="142" width="401" height="20"/>
+                        <rect key="frame" x="20" y="142" width="331" height="20"/>
                         <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="zTM-z5-OfZ">
                             <font key="font" metaFont="smallSystem"/>
                             <url key="url" string="file://localhost/Applications/"/>
@@ -234,6 +234,17 @@
                         </pathCell>
                         <connections>
                             <binding destination="Ilv-Fe-x2D" name="value" keyPath="values.autosavevault_local_path" id="i9z-Oa-0Ov"/>
+                        </connections>
+                    </pathControl>
+                    <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qX-83-5GO">
+                        <rect key="frame" x="20" y="52" width="331" height="20"/>
+                        <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="CcP-Aj-LMl">
+                            <font key="font" metaFont="smallSystem"/>
+                            <url key="url" string="file://localhost/Applications/"/>
+                            <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
+                        </pathCell>
+                        <connections>
+                            <binding destination="Ilv-Fe-x2D" name="value" keyPath="values.masterfolder_local_path" id="CH8-cd-hZ0"/>
                         </connections>
                     </pathControl>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AIH-EG-vHW">
@@ -284,7 +295,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="prefsCloseClicked:" target="ebC-Vb-Tvq" id="MXX-4c-bh1"/>
+                            <action selector="prefsCloseClicked:" target="Qsu-cK-QoF" id="z1n-8h-OwK"/>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9D-v1-abU">
@@ -295,26 +306,44 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qX-83-5GO">
-                        <rect key="frame" x="20" y="52" width="401" height="20"/>
-                        <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="CcP-Aj-LMl">
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AI-uv-1k8">
+                        <rect key="frame" x="359" y="141" width="62" height="17"/>
+                        <buttonCell key="cell" type="roundRect" title="Choose" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oPl-MQ-zeL">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
-                            <url key="url" string="file://localhost/Applications/"/>
-                            <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
-                        </pathCell>
+                        </buttonCell>
                         <connections>
-                            <binding destination="Ilv-Fe-x2D" name="value" keyPath="values.masterfolder_local_path" id="CH8-cd-hZ0"/>
+                            <action selector="chooseVaultLocationClicked:" target="Qsu-cK-QoF" id="qKD-g5-ZFS"/>
                         </connections>
-                    </pathControl>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-Dl-CiQ">
+                        <rect key="frame" x="359" y="53" width="62" height="17"/>
+                        <buttonCell key="cell" type="roundRect" title="Choose" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w38-HF-NYO">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="chooseMasterLocationClicked:" target="Qsu-cK-QoF" id="Axv-6E-uZh"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="Qsu-cK-QoF" id="cff-T5-ofV"/>
+            </connections>
             <point key="canvasLocation" x="431.5" y="743.5"/>
         </window>
         <arrayController id="T0X-hD-9Xe" userLabel="PremiereVersionsArrayController">
             <connections>
-                <binding destination="ebC-Vb-Tvq" name="contentArray" keyPath="knownPremiereVersions" id="YAN-FE-PQ1"/>
+                <binding destination="Qsu-cK-QoF" name="contentArray" keyPath="knownPremiereVersions" id="7si-08-Hz1"/>
             </connections>
         </arrayController>
+        <customObject id="Qsu-cK-QoF" customClass="PrefsWindowController">
+            <connections>
+                <outlet property="mainWindow" destination="QvC-M9-y7g" id="gW2-HS-Y09"/>
+                <outlet property="window" destination="tYO-lL-aVh" id="aIq-HW-mZH"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="NSFolder" width="32" height="32"/>

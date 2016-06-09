@@ -121,29 +121,4 @@
     [[self outlineViewController] setContent:[self outlineViewData]];
     [[self progressBar] stopAnimation:self];
 }
-
-- (void) didEndSheet:(id)sheet returnCode:(NSUInteger)returncode contextInfo:(void*)contextInfo
-{
-    [sheet orderOut:self];
-}
-
-- (void) prefsClicked:(id)sender
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *vaultpath = [defaults valueForKey:@"autosavevault_local_path"];
-    if(vaultpath==NULL){
-        NSLog(@"warning: no vault path set");
-        [defaults setValue:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Adobe/Premiere Pro/8.0/Adobe Premiere Pro Auto-Save"] forKey:@"autosavevault_local_path"];
-    }
-    
-    [NSApp beginSheet:[self prefsPanel] modalForWindow:[self mainWindow] modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
-    
-    //[NSApp beginSheet:[self prefsPanel] completionHandler:^(NSModalResponse returnCode){ NSLog(@"sheet completed."); }];
-    
-}
-
-- (void) prefsCloseClicked:(id)sender
-{
-    [NSApp endSheet:[self prefsPanel]];
-}
 @end

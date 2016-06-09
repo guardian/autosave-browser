@@ -16,7 +16,6 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[self mainWindowController] setKnownPremiereVersions:[NSArray arrayWithObjects:@"8.0", nil]];
     // Insert code here to initialize your application
     [[self mainWindowController] scanAutosaveVault];
     
