@@ -12,6 +12,7 @@
 		9B64BD971D09BCC1008530F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B64BD961D09BCC1008530F1 /* Images.xcassets */; };
 		9B64BD9A1D09BCC1008530F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B64BD981D09BCC1008530F1 /* MainMenu.xib */; };
 		9B64BDA61D09BCC1008530F1 /* AutosaveBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BDA51D09BCC1008530F1 /* AutosaveBrowserTests.m */; };
+		9B64BDB11D09BFC5008530F1 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BDB01D09BFC5008530F1 /* MainWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		9B64BD9F1D09BCC1008530F1 /* AutosaveBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutosaveBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B64BDA41D09BCC1008530F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B64BDA51D09BCC1008530F1 /* AutosaveBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutosaveBrowserTests.m; sourceTree = "<group>"; };
+		9B64BDAF1D09BFC5008530F1 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		9B64BDB01D09BFC5008530F1 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				9B64BD961D09BCC1008530F1 /* Images.xcassets */,
 				9B64BD981D09BCC1008530F1 /* MainMenu.xib */,
 				9B64BD8F1D09BCC1008530F1 /* Supporting Files */,
+				9B64BDAF1D09BFC5008530F1 /* MainWindowController.h */,
+				9B64BDB01D09BFC5008530F1 /* MainWindowController.m */,
 			);
 			path = AutosaveBrowser;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B64BDB11D09BFC5008530F1 /* MainWindowController.m in Sources */,
 				9B64BD951D09BCC1008530F1 /* main.m in Sources */,
 				9B64BD931D09BCC1008530F1 /* AppDelegate.m in Sources */,
 			);
