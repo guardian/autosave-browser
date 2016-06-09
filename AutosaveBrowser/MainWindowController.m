@@ -51,31 +51,27 @@
 
 - (void) addVaultEntryToList:(NSString *)name entryVersion:(NSString *)versionString entryMTime:(NSDate *)entryMTime
 {
-    NSDictionary *parent_entry=NULL;
+    NSMutableDictionary *parent_entry=NULL;
     
     NSLog(@"addVaultEntryToList: name %@",name);
     /*is this entry already present? */
-    for(NSDictionary *entry in [self outlineViewData]){
+    for(NSMutableDictionary *entry in [self outlineViewData]){
         if([[entry objectForKey:@"path"] isEqualToString:name]){
             parent_entry = entry;
             continue;
         }
     }
+    
     if(parent_entry==NULL){
         NSLog(@"creating new parent entry");
-        parent_entry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path", [NSArray array], @"child", nil];
+        parent_entry = [NSMutableDictionary dictionaryWithObjectsAndKeys:name,@"path", [NSMutableArray array], @"child", nil];
         [[self outlineViewController] addObject:parent_entry];
     }
     
-    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys: versionString,@"version", [entryMTime description], @"updated", nil];
+    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:versionString,@"version",[entryMTime description], @"updated", nil];
     
-    NSMutableDictionary *new_parent = [NSMutableDictionary dictionaryWithDictionary:parent_entry];
-    NSMutableArray *new_child_list = [NSMutableArray arrayWithArray:[new_parent objectForKey:@"child"]];
-    [new_child_list addObject:new_subentry];
-    [new_parent setObject:new_child_list forKey:@"child"];
-    [[self outlineViewController] removeObject:parent_entry];
-    [[self outlineViewController] addObject:parent_entry];
-    //NSDictionary *sub_entry = [NSDictionary dictionaryWithObjectsAndKeys:parent_entry, nil]
+    [[parent_entry objectForKey:@"child"] addObject:new_subentry];
+    
 }
 
 - (void) scanAutosaveVault_v80
@@ -96,6 +92,7 @@
         vaultpath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Adobe/Premiere Pro/8.0/Adobe Premiere Pro Auto-Save"];
     }
     
+    [[self outlineViewController] setContent:nil];
     NSLog(@"Scanning %@",vaultpath);
     NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:vaultpath error:&e];
     if(files==NULL) NSLog(@"%@",e);
@@ -121,5 +118,7 @@
             
         }
     }
+    [[self outlineViewController] setContent:[self outlineViewData]];
+    [[self progressBar] stopAnimation:self];
 }
 @end
