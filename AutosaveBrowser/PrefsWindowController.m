@@ -82,4 +82,21 @@
     
 }
 
+- (IBAction) resetToDefaultClicked:(id)sender
+{
+    NSString *versionString = [[[self knownPremiereVersionsController] selectedObjects] objectAtIndex:0];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([versionString compare:@"8.0"]==NSOrderedSame){
+        NSString *vaultpath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Adobe/Premiere Pro/8.0/Adobe Premiere Pro Auto-Save"];
+        [defaults setValue:vaultpath forKey:@"autosavevault_local_path"];
+    } else {
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setMessageText:@"Unknown premiere version"];
+        NSString *infotext = [NSString stringWithFormat:@"I don't know how to manage autosaves for premiere version %@", versionString];
+        [a setInformativeText:infotext];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a runModal];
+    }
+}
 @end

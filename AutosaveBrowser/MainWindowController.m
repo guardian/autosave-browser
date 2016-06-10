@@ -34,6 +34,15 @@
     NSError *e=NULL;
     [[self progressBar] startAnimation:self];
 
+    NSString *vaultpath = [defaults valueForKey:@"autosavevault_local_path"];
+    if(vaultpath==NULL){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a setInformativeText:@"Preferences have not been set up.  Please go to Preferences in the Application menu and set up the autosave vault path then reload the app."];
+        [a runModal];
+        return;
+    }
+    
     if([[[self outlineViewController] selectedObjects] count]>1){
         NSAlert *a=[[NSAlert alloc] init];
         [a setMessageText:@"You must select only one item at a time to restore"];
@@ -64,11 +73,18 @@
     
 
     NSString *destFilename = [defaults valueForKey:@"masterfolder_local_path"];
-    NSLog(@"%@",destFilename);
+    if(destFilename==NULL){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a setInformativeText:@"Preferences have not been set up.  Please go to Preferences in the Application menu and set up the master folder path then try again."];
+        [a runModal];
+        return;
+    }
+
     destFilename = [destFilename stringByAppendingPathComponent:[selectedEntry valueForKey:@"path"]];
-    NSLog(@"%@",destFilename);
+
     destFilename = [destFilename stringByAppendingString:@".prproj"];
-    NSLog(@"%@",destFilename);
+
     NSLog(@"I will copy from %@ to %@",srcFilename,destFilename);
 
     if([[NSFileManager defaultManager] fileExistsAtPath:destFilename]){
@@ -185,8 +201,11 @@
     
     NSString *vaultpath = [defaults valueForKey:@"autosavevault_local_path"];
     if(vaultpath==NULL){
-        NSLog(@"warning: no vault path set");
-        vaultpath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Adobe/Premiere Pro/8.0/Adobe Premiere Pro Auto-Save"];
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a setInformativeText:@"Preferences have not been set up.  Please go to Preferences in the Application menu and set up the autosave vault path then reload the app."];
+        [a runModal];
+        return;
     }
     
     [[self outlineViewController] setContent:nil];

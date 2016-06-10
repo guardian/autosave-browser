@@ -12,6 +12,8 @@
 
 @property (weak) IBOutlet NSPanel *prefsPanel;
 @property (weak) IBOutlet NSWindow *mainWindow;
+@property (weak) IBOutlet NSArrayController *knownPremiereVersionsController;
+
 @property (strong) NSArray *knownPremiereVersions;
 
 - (IBAction) prefsClicked:(id)sender;

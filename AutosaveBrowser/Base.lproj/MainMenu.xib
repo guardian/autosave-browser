@@ -91,7 +91,7 @@
                         </connections>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycd-bO-N7J">
-                        <rect key="frame" x="20" y="48" width="620" height="341"/>
+                        <rect key="frame" x="20" y="48" width="620" height="322"/>
                         <clipView key="contentView" id="hdc-RQ-3MS">
                             <rect key="frame" x="1" y="17" width="238" height="117"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,6 +182,14 @@
                             <action selector="cacheProjectClicked:" target="ebC-Vb-Tvq" id="tlc-lt-5N0"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-q5-N9w">
+                        <rect key="frame" x="20" y="372" width="280" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your autosave vault contains these projects:" id="oN0-Sc-qrf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ycd-bO-N7J" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="3C6-rB-IAK"/>
@@ -192,7 +200,7 @@
                     <constraint firstAttribute="bottom" secondItem="JP2-SB-pTu" secondAttribute="bottom" constant="20" id="MtX-mb-HK7"/>
                     <constraint firstItem="JP2-SB-pTu" firstAttribute="top" secondItem="ycd-bO-N7J" secondAttribute="bottom" constant="10" id="NLW-wx-WB4"/>
                     <constraint firstAttribute="bottom" secondItem="8Ib-bP-u6G" secondAttribute="bottom" constant="19" id="XTO-eN-yU7"/>
-                    <constraint firstItem="ycd-bO-N7J" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="eMy-GG-mqa"/>
+                    <constraint firstItem="ycd-bO-N7J" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="39" id="eMy-GG-mqa"/>
                     <constraint firstAttribute="bottom" secondItem="rEQ-kc-2g9" secondAttribute="bottom" constant="19" id="pDi-DJ-6nm"/>
                     <constraint firstAttribute="trailing" secondItem="8Ib-bP-u6G" secondAttribute="trailing" constant="20" id="y8e-fY-X2g"/>
                 </constraints>
@@ -287,6 +295,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="resetToDefaultClicked:" target="Qsu-cK-QoF" id="mPd-kp-Xl1"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZN-Ao-UUA">
                         <rect key="frame" x="346" y="14" width="80" height="28"/>
@@ -340,6 +351,7 @@
         </arrayController>
         <customObject id="Qsu-cK-QoF" customClass="PrefsWindowController">
             <connections>
+                <outlet property="knownPremiereVersionsController" destination="T0X-hD-9Xe" id="JIk-MA-Kw3"/>
                 <outlet property="mainWindow" destination="QvC-M9-y7g" id="gW2-HS-Y09"/>
                 <outlet property="window" destination="tYO-lL-aVh" id="aIq-HW-mZH"/>
             </connections>
