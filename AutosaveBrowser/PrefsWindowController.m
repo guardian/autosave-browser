@@ -55,6 +55,16 @@
 
 - (void)chooseMasterLocationClicked:(id)sender
 {
+    [self prefsChooseLocationClicked:sender defaultsKey:@"masterfolder_local_path"];
+}
+
+- (IBAction) chooseVaultLocationClicked:(id)sender
+{
+    [self prefsChooseLocationClicked:sender defaultsKey:@"autosavevault_local_path"];
+}
+
+- (void)prefsChooseLocationClicked:(id)sender defaultsKey:(NSString *)defaultsKey
+{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setCanChooseFiles:NO];
@@ -66,7 +76,7 @@
     if (clicked == NSFileHandlingPanelOKButton) {
         for (NSURL *url in [panel URLs]) {
             // do something with the url here.
-            [defaults setObject:[url path] forKey:@"masterfolder_local_path"];
+            [defaults setObject:[url path] forKey:defaultsKey];
         }
     }
     

@@ -30,13 +30,107 @@
 
 - (IBAction) restoreProjectClicked:(id)sender
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSError *e=NULL;
     [[self progressBar] startAnimation:self];
-    NSMutableDictionary *entry = [[self outlineViewController] newObject];
-    [entry setValue:@"entry" forKey:@"path"];
-    [entry setValue:@"1" forKey:@"version"];
-    [entry setValue:@"blah" forKey:@"updated"];
-    NSLog(@"%@",entry);
-    [[self outlineViewController] addObject:entry];
+
+    if([[[self outlineViewController] selectedObjects] count]>1){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setMessageText:@"You must select only one item at a time to restore"];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a runModal];
+        [[self progressBar] stopAnimation:self];
+        return;
+    }
+    if([[[self outlineViewController] selectedObjects] count]<1){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setMessageText:@"You must select an item to restore"];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a runModal];
+        [[self progressBar] stopAnimation:self];
+        return;
+    }
+
+    NSDictionary *selectedEntry = [[[self outlineViewController] selectedObjects] objectAtIndex:0];
+    NSString *srcFilename = [selectedEntry objectForKey:@"filepath"];
+    if(srcFilename == nil){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setMessageText:@"You must select a specific version to restore"];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a runModal];
+        [[self progressBar] stopAnimation:self];
+        return;
+    }
+    
+
+    NSString *destFilename = [defaults valueForKey:@"masterfolder_local_path"];
+    NSLog(@"%@",destFilename);
+    destFilename = [destFilename stringByAppendingPathComponent:[selectedEntry valueForKey:@"path"]];
+    NSLog(@"%@",destFilename);
+    destFilename = [destFilename stringByAppendingString:@".prproj"];
+    NSLog(@"%@",destFilename);
+    NSLog(@"I will copy from %@ to %@",srcFilename,destFilename);
+
+    if([[NSFileManager defaultManager] fileExistsAtPath:destFilename]){
+        NSLog(@"Project already exists at %@",destFilename);
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        //[formatter dateFormatFromTemplate:@"yymmddHHMMSS" options:0 locale:[NSLocale currentLocale]];
+        
+        [formatter setDateFormat:@"yymmddHHMMSS"];
+        NSDate *now = [NSDate date];
+        NSString *datestring = [formatter stringFromDate:now];
+        NSString *safeHostName = [[[NSHost currentHost] name] stringByReplacingOccurrencesOfString:@"." withString:@""];
+        NSString *destBackupFilename = [NSString stringWithFormat:@"%@/%@_%@_%@.prproj",
+                                        [defaults valueForKey:@"masterfolder_local_path"],
+                                        [selectedEntry valueForKey:@"path"],
+                                        safeHostName,
+                                        datestring];
+        
+        NSLog(@"Backing up %@ to %@",destFilename,destBackupFilename);
+        
+        BOOL result = [[NSFileManager defaultManager] moveItemAtPath:destFilename toPath:destBackupFilename error:&e];
+        if(!result){
+            NSAlert *a=[NSAlert alertWithError:e];
+            [a runModal];
+            [[self progressBar] stopAnimation:self];
+            return;
+        }
+    }
+    
+    BOOL result = [[NSFileManager defaultManager] copyItemAtPath:srcFilename toPath:destFilename error:&e];
+    if(!result){
+        NSAlert *a=[NSAlert alertWithError:e];
+        [a runModal];
+        [[self progressBar] stopAnimation:self];
+        return;
+    }
+    
+    NSAlert *a=[[NSAlert alloc] init];
+    [a setIcon:[NSImage imageNamed:NSImageNameInfo]];
+    [a addButtonWithTitle:@"Yes"];
+    [a addButtonWithTitle:@"No"];
+    [a setMessageText:@"Project has been restored"];
+    NSString *alertText = [NSString stringWithFormat:@"The project %@ has been replaced with the autosave version from %@, and the original has been backed up.  Do you want to open the restored project now?",destFilename,[selectedEntry valueForKey:@"updated"]];
+    [a setInformativeText:alertText];
+    
+    NSModalResponse n=[a runModal];
+    switch(n){
+        case 1000:
+        {
+            NSLog(@"Attempting to open %@",destFilename);
+            NSTask *t = [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open"
+                                                 arguments:[NSArray arrayWithObjects:destFilename, nil]
+                         ];
+            break;
+        }
+        case 1001:
+            NSLog(@"you clicked No");
+            break;
+        default:
+            NSLog(@"unknown click %lu",n);
+    }
+    [[self progressBar] stopAnimation:self];
 }
 
 - (IBAction) cacheProjectClicked:(id)sender
@@ -49,7 +143,10 @@
     [self scanAutosaveVault_v80];
 }
 
-- (void) addVaultEntryToList:(NSString *)name entryVersion:(NSString *)versionString entryMTime:(NSDate *)entryMTime
+- (void) addVaultEntryToList:(NSString *)name
+                entryVersion:(NSString *)versionString
+                  entryMTime:(NSDate *)entryMTime
+                    filepath:(NSString *)filepath
 {
     NSMutableDictionary *parent_entry=NULL;
     
@@ -68,7 +165,7 @@
         [[self outlineViewController] addObject:parent_entry];
     }
     
-    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:versionString,@"version",[entryMTime description], @"updated", nil];
+    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path", versionString,@"version",[entryMTime description], @"updated", filepath, @"filepath", nil];
     
     [[parent_entry objectForKey:@"child"] addObject:new_subentry];
     
@@ -112,9 +209,14 @@
                 [props addObject:[path substringWithRange:[result rangeAtIndex:n]]];
                 //NSLog(@"\t\t%@",);
             }
-            NSDictionary *fileAttribs = [[NSFileManager defaultManager] attributesOfItemAtPath:[vaultpath stringByAppendingPathComponent:path] error:&e];
+            NSString *filepath = [vaultpath stringByAppendingPathComponent:path];
+            NSDictionary *fileAttribs = [[NSFileManager defaultManager] attributesOfItemAtPath:filepath error:&e];
             
-            [self addVaultEntryToList:[props objectAtIndex:0] entryVersion:[props objectAtIndex:1] entryMTime:[fileAttribs objectForKey:NSFileModificationDate]];
+            [self addVaultEntryToList:[props objectAtIndex:0]
+                         entryVersion:[props objectAtIndex:1]
+                           entryMTime:[fileAttribs objectForKey:NSFileModificationDate]
+                             filepath:filepath
+             ];
             
         }
     }
