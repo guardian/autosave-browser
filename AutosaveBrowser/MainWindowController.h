@@ -18,6 +18,8 @@
 @property (weak) IBOutlet NSProgressIndicator *progressBar;
 @property (weak) IBOutlet NSWindow *mainWindow;
 
+@property (strong) NSImage *nsPremiereIcon;
+
 - (void) scanAutosaveVault;
 
 @end

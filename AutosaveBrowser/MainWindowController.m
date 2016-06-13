@@ -16,6 +16,11 @@
 - (id) init {
     self=[super init];
     [self setOutlineViewData:[NSMutableArray array]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults addObserver:self forKeyPath:@"autosavevault_local_path" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [self setNsPremiereIcon:[[NSWorkspace sharedWorkspace] iconForFile:@"/Applications/Adobe Premiere Pro CC 2014/Adobe Premiere Pro CC 2014.app"]];
     return self;
 }
 
@@ -27,6 +32,18 @@
     [self scanAutosaveVault];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    //NSUserDefaults *defaults = (NSUserDefaults *)object;
+
+    if([keyPath compare:@"autosavevault_local_path"]==NSOrderedSame){
+        [self emptyVaultList];
+        [self scanAutosaveVault];
+    }
+}
 
 - (IBAction) restoreProjectClicked:(id)sender
 {
@@ -151,7 +168,56 @@
 
 - (IBAction) cacheProjectClicked:(id)sender
 {
-    [[self outlineViewController] addChild:sender];
+    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSError *e;
+    
+    NSDictionary *selectedEntry = [[[self outlineViewController] selectedObjects] objectAtIndex:0];
+    NSString *srcFilename = [selectedEntry objectForKey:@"filepath"];
+    if(srcFilename == nil){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setMessageText:@"You must select a specific version to cache"];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a runModal];
+        [[self progressBar] stopAnimation:self];
+        return;
+    }
+    
+    NSString *cachepath = [defaults valueForKey:@"cachefolder_local_path"];
+    if(cachepath==NULL){
+        NSAlert *a=[[NSAlert alloc] init];
+        [a setIcon:[NSImage imageNamed:NSImageNameCaution]];
+        [a setInformativeText:@"Preferences have not been set up.  Please go to Preferences in the Application menu and set up the cache path then reload the app."];
+        [a runModal];
+        return;
+    }
+    
+    NSString *fnOnly = [srcFilename lastPathComponent];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //[formatter dateFormatFromTemplate:@"yymmddHHMMSS" options:0 locale:[NSLocale currentLocale]];
+    
+    [formatter setDateFormat:@"yymmddHHMMSS"];
+    NSDate *now = [NSDate date];
+    NSString *datestring = [formatter stringFromDate:now];
+    NSString *safeHostName = [[[NSHost currentHost] name] stringByReplacingOccurrencesOfString:@"." withString:@""];
+    NSString *newFilename = [NSString stringWithFormat:@"%@_%@_%@",datestring,safeHostName,fnOnly];
+    
+    NSString *destFileName = [cachepath stringByAppendingPathComponent:newFilename];
+    
+    NSLog(@"cache project: I will copy %@ to %@",srcFilename, destFileName);
+    
+    bool r=[mgr copyItemAtPath:srcFilename toPath:destFileName error:&e];
+    if(!r){
+        NSLog(@"%@",e);
+        NSAlert *al = [NSAlert alertWithError:e];
+        [al runModal];
+    }
+    
+}
+
+- (void) emptyVaultList
+{
+    [self setOutlineViewData:[NSMutableArray array]];   //set outline data to a blank array
 }
 
 - (void) scanAutosaveVault
@@ -177,11 +243,11 @@
     
     if(parent_entry==NULL){
         NSLog(@"creating new parent entry");
-        parent_entry = [NSMutableDictionary dictionaryWithObjectsAndKeys:name,@"path", [NSMutableArray array], @"child", nil];
+        parent_entry = [NSMutableDictionary dictionaryWithObjectsAndKeys:name,@"path", [NSMutableArray array], @"child", [self nsPremiereIcon], @"icon", nil];
         [[self outlineViewController] addObject:parent_entry];
     }
     
-    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path", versionString,@"version",[entryMTime description], @"updated", filepath, @"filepath", nil];
+    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path", versionString,@"version",[entryMTime description], @"updated", filepath, @"filepath", [self nsPremiereIcon], @"icon", nil];
     
     [[parent_entry objectForKey:@"child"] addObject:new_subentry];
     

@@ -63,6 +63,11 @@
     [self prefsChooseLocationClicked:sender defaultsKey:@"autosavevault_local_path"];
 }
 
+- (IBAction) chooseCacheLocationClicked:(id)sender
+{
+    [self prefsChooseLocationClicked:sender defaultsKey:@"cachefolder_local_path"];
+}
+
 - (void)prefsChooseLocationClicked:(id)sender defaultsKey:(NSString *)defaultsKey
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

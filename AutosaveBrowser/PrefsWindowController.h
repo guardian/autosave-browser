@@ -13,6 +13,7 @@
 @property (weak) IBOutlet NSPanel *prefsPanel;
 @property (weak) IBOutlet NSWindow *mainWindow;
 @property (weak) IBOutlet NSArrayController *knownPremiereVersionsController;
+@property (weak) IBOutlet NSButton *treatCacheAsRemoteCheck;
 
 @property (strong) NSArray *knownPremiereVersions;
 
@@ -22,5 +23,5 @@
 - (IBAction) resetToDefaultClicked:(id)sender;
 - (IBAction) chooseVaultLocationClicked:(id)sender;
 - (IBAction) chooseMasterLocationClicked:(id)sender;
-
+- (IBAction) chooseCacheLocationClicked:(id)sender;
 @end

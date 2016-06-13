@@ -14,6 +14,7 @@
 		9B64BDA61D09BCC1008530F1 /* AutosaveBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BDA51D09BCC1008530F1 /* AutosaveBrowserTests.m */; };
 		9B64BDB11D09BFC5008530F1 /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BDB01D09BFC5008530F1 /* MainWindowController.m */; };
 		9B64BDB41D0A2131008530F1 /* PrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BDB31D0A2131008530F1 /* PrefsWindowController.m */; };
+		9BE791BA1D0EAE9700CBB852 /* FileURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE791B91D0EAE9700CBB852 /* FileURLValueTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,8 @@
 		9B64BDB01D09BFC5008530F1 /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		9B64BDB21D0A2131008530F1 /* PrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsWindowController.h; sourceTree = "<group>"; };
 		9B64BDB31D0A2131008530F1 /* PrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsWindowController.m; sourceTree = "<group>"; };
+		9BE791B81D0EAE9700CBB852 /* FileURLValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileURLValueTransformer.h; sourceTree = "<group>"; };
+		9BE791B91D0EAE9700CBB852 /* FileURLValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileURLValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				9B64BD921D09BCC1008530F1 /* AppDelegate.m */,
 				9B64BD961D09BCC1008530F1 /* Images.xcassets */,
 				9B64BD981D09BCC1008530F1 /* MainMenu.xib */,
+				9BE791B81D0EAE9700CBB852 /* FileURLValueTransformer.h */,
+				9BE791B91D0EAE9700CBB852 /* FileURLValueTransformer.m */,
 				9B64BDB21D0A2131008530F1 /* PrefsWindowController.h */,
 				9B64BDB31D0A2131008530F1 /* PrefsWindowController.m */,
 				9B64BD8F1D09BCC1008530F1 /* Supporting Files */,
@@ -223,6 +228,7 @@
 				9B64BDB11D09BFC5008530F1 /* MainWindowController.m in Sources */,
 				9B64BD951D09BCC1008530F1 /* main.m in Sources */,
 				9B64BDB41D0A2131008530F1 /* PrefsWindowController.m in Sources */,
+				9BE791BA1D0EAE9700CBB852 /* FileURLValueTransformer.m in Sources */,
 				9B64BD931D09BCC1008530F1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +416,7 @@
 				9B64BDAB1D09BCC1008530F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B64BDAC1D09BCC1008530F1 /* Build configuration list for PBXNativeTarget "AutosaveBrowserTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +425,7 @@
 				9B64BDAE1D09BCC1008530F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
