@@ -29,6 +29,7 @@
 
 - (id)transformedValue:(id)value
 {
+    if(value==nil) return [NSURL fileURLWithPath:@"/" isDirectory:YES];
     return [NSURL fileURLWithPath:value isDirectory:YES];
 }
 
