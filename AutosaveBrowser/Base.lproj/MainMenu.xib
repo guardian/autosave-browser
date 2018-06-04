@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1808" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G20015" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -75,12 +75,12 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="660" height="409"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="660" height="409"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-bP-u6G">
+                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ib-bP-u6G">
                         <rect key="frame" x="543" y="12" width="103" height="32"/>
                         <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qyT-ye-oxe">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -90,17 +90,38 @@
                             <action selector="restoreProjectClicked:" target="ebC-Vb-Tvq" id="PzM-kp-eAH"/>
                         </connections>
                     </button>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycd-bO-N7J">
-                        <rect key="frame" x="20" y="48" width="620" height="322"/>
+                    <progressIndicator ambiguous="YES" misplaced="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="JP2-SB-pTu">
+                        <rect key="frame" x="20" y="19" width="331" height="20"/>
+                    </progressIndicator>
+                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rEQ-kc-2g9">
+                        <rect key="frame" x="449" y="12" width="94" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cache" bezelStyle="rounded" image="NSFolder" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aZm-l9-Ip4">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cacheProjectClicked:" target="ebC-Vb-Tvq" id="tlc-lt-5N0"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-q5-N9w">
+                        <rect key="frame" x="20" y="372" width="280" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your autosave vault contains these projects:" id="oN0-Sc-qrf">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycd-bO-N7J">
+                        <rect key="frame" x="20" y="46" width="620" height="322"/>
                         <clipView key="contentView" id="hdc-RQ-3MS">
-                            <rect key="frame" x="1" y="17" width="238" height="117"/>
+                            <rect key="frame" x="1" y="0.0" width="618" height="306"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" alternatingRowBackgroundColors="YES" multipleSelection="NO" autosaveColumns="NO" headerView="gro-Wq-K0F" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="zXi-Ki-hux" id="Egc-V0-kY5">
-                                    <rect key="frame" x="0.0" y="0.0" width="685" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="685" height="283"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn width="250" minWidth="40" maxWidth="1000" id="zXi-Ki-hux">
@@ -160,7 +181,11 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
-                                                <binding destination="Q9h-b8-moY" name="value" keyPath="arrangedObjects.updated" id="oYg-Y3-n5C"/>
+                                                <binding destination="Q9h-b8-moY" name="value" keyPath="arrangedObjects.updated" id="7C0-vo-HAK">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">DateTimeValueTransformer</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </tableColumn>
                                     </tableColumns>
@@ -169,7 +194,7 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="11v-Lx-voz">
-                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                            <rect key="frame" x="1" y="306" width="618" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="WMk-zy-MLL">
@@ -177,31 +202,10 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="gro-Wq-K0F">
-                            <rect key="frame" x="0.0" y="0.0" width="238" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="685" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <progressIndicator ambiguous="YES" misplaced="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="JP2-SB-pTu">
-                        <rect key="frame" x="20" y="19" width="331" height="20"/>
-                    </progressIndicator>
-                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rEQ-kc-2g9">
-                        <rect key="frame" x="449" y="12" width="94" height="32"/>
-                        <buttonCell key="cell" type="push" title="Cache" bezelStyle="rounded" image="NSFolder" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aZm-l9-Ip4">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="cacheProjectClicked:" target="ebC-Vb-Tvq" id="tlc-lt-5N0"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nw0-q5-N9w">
-                        <rect key="frame" x="20" y="372" width="280" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your autosave vault contains these projects:" id="oN0-Sc-qrf">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ycd-bO-N7J" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="3C6-rB-IAK"/>
@@ -240,7 +244,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="81" width="526" height="288"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="Tlh-vH-H4t">
                 <rect key="frame" x="0.0" y="0.0" width="526" height="288"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -424,6 +428,6 @@
     </objects>
     <resources>
         <image name="NSFolder" width="32" height="32"/>
-        <image name="NSRefreshTemplate" width="10" height="12"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
     </resources>
 </document>
