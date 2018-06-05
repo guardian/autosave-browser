@@ -29,7 +29,9 @@
     //[self setOutlineViewData:[NSMutableArray array]];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSLog(@"windowDidLoad");
+    
     [self scanAutosaveVault];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -247,7 +249,12 @@
         [[self outlineViewController] addObject:parent_entry];
     }
     
-    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path", versionString,@"version",[entryMTime description], @"updated", filepath, @"filepath", [self nsPremiereIcon], @"icon", nil];
+    NSDictionary *new_subentry = [NSDictionary dictionaryWithObjectsAndKeys:name,@"path",
+                                  [NSNumber numberWithInteger:[versionString integerValue]],@"version",
+                                  entryMTime, @"updated",
+                                  filepath, @"filepath",
+                                  [self nsPremiereIcon], @"icon",
+                                  nil];
     
     [[parent_entry objectForKey:@"child"] addObject:new_subentry];
     
@@ -305,7 +312,10 @@
             
         }
     }
+    
     [[self outlineViewController] setContent:[self outlineViewData]];
+        [[self outlineViewController] setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"version" ascending:FALSE], nil]];
+
     [[self progressBar] stopAnimation:self];
 }
 @end

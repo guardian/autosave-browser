@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B026AD220C5801C006A9241 /* DateTimeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B026AD120C5801C006A9241 /* DateTimeValueTransformer.m */; };
 		9B64BD931D09BCC1008530F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BD921D09BCC1008530F1 /* AppDelegate.m */; };
 		9B64BD951D09BCC1008530F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B64BD941D09BCC1008530F1 /* main.m */; };
 		9B64BD971D09BCC1008530F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B64BD961D09BCC1008530F1 /* Images.xcassets */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B026AD020C5801C006A9241 /* DateTimeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTimeValueTransformer.h; sourceTree = "<group>"; };
+		9B026AD120C5801C006A9241 /* DateTimeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTimeValueTransformer.m; sourceTree = "<group>"; };
 		9B64BD8C1D09BCC1008530F1 /* AutosaveBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutosaveBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B64BD901D09BCC1008530F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B64BD911D09BCC1008530F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				9B64BD8F1D09BCC1008530F1 /* Supporting Files */,
 				9B64BDAF1D09BFC5008530F1 /* MainWindowController.h */,
 				9B64BDB01D09BFC5008530F1 /* MainWindowController.m */,
+				9B026AD020C5801C006A9241 /* DateTimeValueTransformer.h */,
+				9B026AD120C5801C006A9241 /* DateTimeValueTransformer.m */,
 			);
 			path = AutosaveBrowser;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B026AD220C5801C006A9241 /* DateTimeValueTransformer.m in Sources */,
 				9B64BDB11D09BFC5008530F1 /* MainWindowController.m in Sources */,
 				9B64BD951D09BCC1008530F1 /* main.m in Sources */,
 				9B64BDB41D0A2131008530F1 /* PrefsWindowController.m in Sources */,
