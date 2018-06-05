@@ -29,7 +29,9 @@
     //[self setOutlineViewData:[NSMutableArray array]];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSLog(@"windowDidLoad");
+    
     [self scanAutosaveVault];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -310,7 +312,10 @@
             
         }
     }
+    
     [[self outlineViewController] setContent:[self outlineViewData]];
+        [[self outlineViewController] setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"version" ascending:FALSE], nil]];
+
     [[self progressBar] stopAnimation:self];
 }
 @end
