@@ -308,4 +308,91 @@
     [[self outlineViewController] setContent:[self outlineViewData]];
     [[self progressBar] stopAnimation:self];
 }
+
+- (IBAction) uploadProjectClicked:(id)sender
+{
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    
+    [panel setTitle: @"title"];
+    NSString *title = NSLocalizedString(@"Choose file to use", @"");
+    [panel setMessage: title];
+    
+    [panel beginWithCompletionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL*  theDoc = [[panel URLs] objectAtIndex:0];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSError *e=NULL;
+            [[self progressBar] startAnimation:self];
+            
+            NSString *srcFilename = theDoc.absoluteString;
+            srcFilename = [srcFilename stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            
+            NSString *theFileName = [[srcFilename lastPathComponent] stringByDeletingPathExtension];
+            
+            NSString *destFilename = [NSString stringWithFormat:@"%@/%@.prproj",[defaults valueForKey:@"masterfolder_local_path"],theFileName];
+            
+            NSLog(@"I will copy from %@ to %@",srcFilename,destFilename);
+            
+            if([[NSFileManager defaultManager] fileExistsAtPath:destFilename]){
+                NSLog(@"Project already exists at %@",destFilename);
+                
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                
+                [formatter setDateFormat:@"yymmddHHMMSS"];
+                NSDate *now = [NSDate date];
+                NSString *datestring = [formatter stringFromDate:now];
+                NSString *safeHostName = [[[NSHost currentHost] name] stringByReplacingOccurrencesOfString:@"." withString:@""];
+                NSString *destBackupFilename = [NSString stringWithFormat:@"%@/%@_%@.prproj",
+                                                [defaults valueForKey:@"masterfolder_local_path"],
+                                                safeHostName,
+                                                datestring];
+                
+                NSLog(@"Backing up %@ to %@",destFilename,destBackupFilename);
+                
+                BOOL result = [[NSFileManager defaultManager] moveItemAtPath:destFilename toPath:destBackupFilename error:&e];
+                if(!result){
+                    NSAlert *a=[NSAlert alertWithError:e];
+                    [a runModal];
+                    [[self progressBar] stopAnimation:self];
+                    return;
+                }
+            }
+            
+            BOOL result = [[NSFileManager defaultManager] copyItemAtPath:srcFilename toPath:destFilename error:&e];
+            if(!result){
+                NSAlert *a=[NSAlert alertWithError:e];
+                [a runModal];
+                [[self progressBar] stopAnimation:self];
+                return;
+            }
+            
+            NSAlert *a=[[NSAlert alloc] init];
+            [a setIcon:[NSImage imageNamed:NSImageNameInfo]];
+            [a addButtonWithTitle:@"Yes"];
+            [a addButtonWithTitle:@"No"];
+            [a setMessageText:@"Project has been restored"];
+            NSString *alertText = [NSString stringWithFormat:@"The project %@ has been replaced with the supplied version, and the original has been backed up.  Do you want to open the restored project now?",destFilename];
+            [a setInformativeText:alertText];
+            
+            NSModalResponse n=[a runModal];
+            switch(n){
+                case 1000:
+                {
+                    NSLog(@"Attempting to open %@",destFilename);
+                    NSTask *t = [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open"
+                                                         arguments:[NSArray arrayWithObjects:destFilename, nil]
+                                 ];
+                    break;
+                }
+                case 1001:
+                    NSLog(@"you clicked No");
+                    break;
+                default:
+                    NSLog(@"unknown click %lu",n);
+            }
+            [[self progressBar] stopAnimation:self];
+        }
+    }];
+    
+}
 @end
