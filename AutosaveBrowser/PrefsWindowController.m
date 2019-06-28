@@ -58,6 +58,11 @@
     [self prefsChooseLocationClicked:sender defaultsKey:@"masterfolder_local_path"];
 }
 
+- (IBAction)chooseSecondMasterLocationClicked:(id)sender
+{
+    [self prefsChooseLocationClicked:sender defaultsKey:@"secondmasterfolder_local_path"];
+}
+
 - (IBAction) chooseVaultLocationClicked:(id)sender
 {
     [self prefsChooseLocationClicked:sender defaultsKey:@"autosavevault_local_path"];

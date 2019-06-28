@@ -252,14 +252,14 @@
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="tYO-lL-aVh" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="139" y="81" width="526" height="288"/>
+            <rect key="contentRect" x="139" y="81" width="526" height="325"/>
             <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1418"/>
             <view key="contentView" id="Tlh-vH-H4t">
-                <rect key="frame" x="0.0" y="0.0" width="526" height="288"/>
+                <rect key="frame" x="0.0" y="0.0" width="526" height="325"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7V-ri-Z5Q">
-                        <rect key="frame" x="20" y="223" width="416" height="20"/>
+                        <rect key="frame" x="20" y="260" width="416" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="zTM-z5-OfZ">
                             <font key="font" metaFont="smallSystem"/>
@@ -275,7 +275,7 @@
                         </connections>
                     </pathControl>
                     <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qX-83-5GO">
-                        <rect key="frame" x="20" y="133" width="416" height="20"/>
+                        <rect key="frame" x="65" y="170" width="371" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="CcP-Aj-LMl">
                             <font key="font" metaFont="smallSystem"/>
@@ -291,7 +291,7 @@
                         </connections>
                     </pathControl>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIH-EG-vHW">
-                        <rect key="frame" x="20" y="251" width="180" height="14"/>
+                        <rect key="frame" x="20" y="288" width="180" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Your autosave vault is located at:" id="erG-LY-oTl">
                             <font key="font" metaFont="smallSystem"/>
@@ -300,9 +300,9 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybi-4T-2l5">
-                        <rect key="frame" x="20" y="161" width="219" height="14"/>
+                        <rect key="frame" x="20" y="198" width="230" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Master folder for Premiere projects is at:" id="DtD-B3-kQP">
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Master folders for Premiere projects are at:" id="DtD-B3-kQP">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -346,7 +346,7 @@
                         </connections>
                     </pathControl>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfi-w1-HBe">
-                        <rect key="frame" x="402" y="194" width="68" height="22"/>
+                        <rect key="frame" x="402" y="231" width="68" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="mei-KT-q9l" id="nrH-Qm-9Mx">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -365,7 +365,7 @@
                         </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXT-B0-gkS">
-                        <rect key="frame" x="470" y="191" width="41" height="28"/>
+                        <rect key="frame" x="470" y="228" width="41" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fcl-sR-Gha">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -387,7 +387,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9D-v1-abU">
-                        <rect key="frame" x="200" y="199" width="202" height="14"/>
+                        <rect key="frame" x="200" y="236" width="202" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Reset to default for Premiere version:" id="rf3-Jg-ImO">
                             <font key="font" metaFont="smallSystem"/>
@@ -396,7 +396,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1AI-uv-1k8">
-                        <rect key="frame" x="444" y="222" width="62" height="17"/>
+                        <rect key="frame" x="444" y="259" width="62" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="Choose" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oPl-MQ-zeL">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -407,7 +407,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-Dl-CiQ">
-                        <rect key="frame" x="444" y="134" width="62" height="17"/>
+                        <rect key="frame" x="444" y="171" width="62" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="Choose" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w38-HF-NYO">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -428,12 +428,57 @@
                             <action selector="chooseMasterLocationClicked:" target="Qsu-cK-QoF" id="5Pd-S4-fRb"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJU-Cp-QOh">
+                        <rect key="frame" x="444" y="143" width="62" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundRect" title="Choose" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aGG-Aa-cRw">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="chooseSecondMasterLocationClicked:" target="Qsu-cK-QoF" id="RrH-vb-3JJ"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahj-DW-bcf">
+                        <rect key="frame" x="20" y="172" width="39" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Portal:" id="6LD-Lb-Ywo">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7u-yx-LRc">
+                        <rect key="frame" x="20" y="142" width="80" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ProjectLocker:" id="FXf-PK-yzb">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bi7-1V-RsX">
+                        <rect key="frame" x="105" y="140" width="331" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="Xmb-ha-kAn">
+                            <font key="font" metaFont="smallSystem"/>
+                            <url key="url" string="file://localhost/Applications/"/>
+                            <color key="backgroundColor" red="0.8980392157" green="0.92549019610000005" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
+                        </pathCell>
+                        <connections>
+                            <binding destination="Ilv-Fe-x2D" name="value" keyPath="values.secondmasterfolder_local_path" id="QxO-Ru-O4I">
+                                <dictionary key="options">
+                                    <string key="NSValueTransformerName">FileURLValueTransformer</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </pathControl>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="Qsu-cK-QoF" id="cff-T5-ofV"/>
             </connections>
-            <point key="canvasLocation" x="474" y="784"/>
+            <point key="canvasLocation" x="474" y="802.5"/>
         </window>
         <arrayController id="T0X-hD-9Xe" userLabel="PremiereVersionsArrayController">
             <connections>
